@@ -15,7 +15,7 @@ ROS Packages to control the GVR-Bot
 - `sudo apt-get install ros-indigo-qt-create`
 - `sudo apt-get install ros-indigo-qt-build`
 4. Download the "gvrbot_controller" (gvrbot_controller was initially created by using the catkin_create_qt_pkg command) and "gvrbot" directories from this repository and move it to this destination on your machine: `/home/user1/catkin_ws/src/`
-5. Once you've moved "gvrbot_controller" and "gvrbot" to `/home/gvrbot/gvrbot-ros/src`, run the following:
+5. Once you've moved "gvrbot_controller" and "gvrbot" to `/home/user1/catkin_ws/src`, run the following:
 - `cd /home/user1/catkin_ws/ `
 - `catkin_make`
 - *NOTE: If gvrbot package is NOT already built you will have to run 'source /home/user1/catkin_ws/devel/setup.bash' or 'source ~/.bashrc' after 'catkin_make' command and then run 'catkin_make' again, because gvrbot_controller depends on gvrbot package*
