@@ -1,5 +1,5 @@
 # usma_gvrbot
-ROS Packages to control the GVR-Bot
+ROS Packages to control the GVR-Bot using TARDEC custom ROS messages.
 ***************************************************************************
 ### Install instructions
 *These steps should be performed on an Ubuntu 14.04 machine with ROS-Indigo-Full-Desktop installed*
