@@ -1,0 +1,17 @@
+<?xml version="1.0"?>
+<robot>
+
+  <macro name="rectangular_prism_tensor" params="mass len_x len_y len_z">
+    <inertia   ixx="${ mass / 3 * ( len_y * len_y + len_z * len_z ) }" ixy="${ mass / 4 * len_x * len_y }" ixz="${ mass / 4 * len_x * len_z }"
+               iyy="${ mass / 3 * ( len_y * len_y + len_z * len_z ) }" iyz="${ mass / 4 * len_y * len_z }"
+               izz="${ mass / 3 * ( len_y * len_y + len_z * len_z ) }" />
+  </macro>
+
+  <!-- Z axis through the center of top and bottom  -->
+  <macro name="cylinder_tensor" params="mass radius height">
+    <inertia   ixx="${ mass / 12 * height * height + mass / 4 * radius * radius }" ixy="0.0" ixz="0.0"
+               iyy="${ mass / 12 * height * height + mass / 4 * radius * radius }" iyz="0.0"
+               izz="${ mass / 2 * radius * radius }" />
+  </macro>
+
+</robot>

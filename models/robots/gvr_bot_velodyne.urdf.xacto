@@ -1,0 +1,29 @@
+<?xml version="1.0"?>
+
+<robot name="gvr_bot"
+    xmlns:sensor="http://playerstage.sourceforge.net/gazebo/xmlschema/#sensor"
+    xmlns:controller="http://playerstage.sourceforge.net/gazebo/xmlschema/#controller"
+    xmlns:interface="http://playerstage.sourceforge.net/gazebo/xmlschema/#interface">
+    
+    <!-- Included URDF Files -->
+    <include filename="$(find gvr_bot)/models/robots/gvr_base.urdf.xacro" />
+    <include filename="$(find usma_velodyne)/urdf/velodyne.urdf.xacro" />
+  <!--  <include filename="$(find pointgrey_camera_description)/urdf/pointgrey_flea3.urdf.xacro" /> -->
+
+    <gvr_base_macro />
+    <plexiglass_mount_macro />
+    <plexiglass_mount_link link_name="velodyne_mount" x="0.0" y="0.0" theta="0.0" />
+    <plexiglass_mount_link link_name="camera_mount" x="0.2" y="0.0" theta="0.0" />
+
+    <pointgrey_flea3 frame="flea3" name="flea3" camera_x="0.0754" camera_y="0.029" camera_z="0.035" camera_mass="0.085" hfov="1.0471975512" fps="60" width="640" height="512" />
+
+    <!--velodyne_32 parent="base_link" prefix="v32"  vb_x="0.0" vb_y="0.0" vb_z="0.5" vb_r="0.0" vb_p="0.0" vb_yaw="0.0" /-->
+    <velodyne_32_w_mast parent_frame="base_link" parent_link="velodyne_mount" prefix="v32" />
+ <joint name="camera_joint" type="fixed">
+    <origin xyz="0 0 0.0" rpy="0 0 0" />
+    <parent link="camera_mount" />
+    <child link="flea3" />
+  </joint>
+</robot>
+
+

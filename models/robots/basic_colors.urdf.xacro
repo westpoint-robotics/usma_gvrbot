@@ -1,0 +1,50 @@
+<?xml version="1.0"?>
+<robot>
+  <macro name="Black">
+    <material name="black">
+      <color rgba="0.0 0.0 0.0 1.0"/>
+    </material>
+  </macro>
+ 
+  <macro name="Blue">
+    <material name="blue">
+      <color rgba="0.0 0.0 0.8 1.0"/>
+    </material>
+  </macro>
+ 
+  <macro name="Green">
+    <material name="green">
+      <color rgba="0.0 0.8 0.0 1.0"/>
+    </material>
+  </macro>
+ 
+  <macro name="Gray">
+    <material name="gray">
+      <color rgba="0.7 0.7 0.7 1.0"/>
+    </material>
+  </macro>
+ 
+  <macro name="DarkGray">
+    <material name="darkGray">
+      <color rgba="0.3 0.3 0.3 1.0"/>
+    </material>
+  </macro>
+ 
+  <macro name="Red">
+    <material name="red">
+      <color rgba="0.8 0.0 0.0 1.0"/>
+    </material>
+  </macro>
+ 
+  <macro name="White">
+    <material name="white">
+      <color rgba="1.0 1.0 1.0 1.0"/>
+    </material>
+  </macro>
+ 
+  <macro name="Yellow">
+    <material name="yellow">
+      <color rgba="0.8 0.8 0.0 1.0"/>
+    </material>
+  </macro>
+</robot>
