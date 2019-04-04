@@ -32,5 +32,5 @@ Istructions for connecting remote computers to the GVR-Bot
         + Stop publishing this command to stop the tracks by pressing cltr+c in the same terminal window.
     + If the GVRbot drove forward then at this point your external Linux computer is configured to control the robot using ROS.
 7.  Test Xbox 360 joystick control by plugging an Xbox joystick into the external Linux computer and run the command:
-    + `roslaunch usma_gvrbot xbox360_teleop.launch`
+    + `roslaunch gvrbot xbox360_teleop.launch`
     + The deadman switch is the left bumper and the drive stick is the left joystick.

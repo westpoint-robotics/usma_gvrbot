@@ -3,15 +3,13 @@
     Push and hold the left front bumper labeled as 'LB' to activate cmd_vel publishing.
     Push and hold the 'A' button instead of the bumper to enable turbo.
     Move the left stick around to control the velocity.
--->
-
+  -->
 
   <arg name="joy_config" value="xbox" />
   <arg name="joy_dev" value="/dev/input/js1" />
 
-
   <include file="$(find teleop_twist_joy)/launch/teleop.launch">
-      <arg name="config_filepath" value="$(find usma_gvrbot)/config/$(arg joy_config).config.yaml" />
+      <arg name="config_filepath" value="$(find gvrbot)/config/$(arg joy_config).config.yaml" />
   </include>
 
 </launch>

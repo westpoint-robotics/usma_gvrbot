@@ -1,5 +1,5 @@
 cmake_minimum_required(VERSION 2.8.3)
-project(usma_gvrbot)
+project(gvrbot)
 
 ## Compile as C++11, supported in ROS Kinetic and newer
 # add_compile_options(-std=c++11)
@@ -112,7 +112,7 @@ generate_messages(
 ## DEPENDS: system dependencies of this project that dependent projects also need
 catkin_package(
 #  INCLUDE_DIRS include
-#  LIBRARIES usma_gvrbot
+#  LIBRARIES gvrbot
 #  CATKIN_DEPENDS roscpp rospy std_msgs
 #  DEPENDS system_lib
     CATKIN_DEPENDS message_runtime geometry_msgs
@@ -131,7 +131,7 @@ include_directories(
 
 ## Declare a C++ library
 # add_library(${PROJECT_NAME}
-#   src/${PROJECT_NAME}/usma_gvrbot.cpp
+#   src/${PROJECT_NAME}/gvrbot.cpp
 # )
 
 ## Add cmake target dependencies of the library
