@@ -1,32 +1,17 @@
 <launch>
   <!--
-    Push the left frontal button labeled as 'LB' to activate cmd_vel publishing.
+    Push and hold the left front bumper labeled as 'LB' to activate cmd_vel publishing.
+    Push and hold the 'A' button instead of the bumper to enable turbo.
     Move the left stick around to control the velocity.
-   -->
-  <!--  smooths inputs from cmd_vel_mux/input/teleop_raw to cmd_vel_mux/input/teleop
-  <include file="$(find turtlebot_teleop)/launch/includes/velocity_smoother.launch.xml"/>   -->
-	<!--
-  <node pkg="turtlebot_teleop" type="turtlebot_teleop_joy" name="gvr_teleop_joystick">
-    <param name="scale_angular" value="1.5"/>
-    <param name="scale_linear" value="0.5"/>
-    <param name="axis_deadman" value="4"/>
-    <param name="axis_linear" value="1"/>
-    <param name="axis_angular" value="0"/>
-    <remap from="/gvr_teleop_joystick/cmd_vel" to="/cmd_vel"/>
-  </node>
-   -->
-
-  <node pkg="teleop_twist_joy" type="teleop_node" name="gvr_teleop_joystick">
-    <param name="enable_button" value="4"/>
-    <param name="enable_turbo_button" value="-1"/>
-    <param name="axis_linear" value="1"/>
-    <param name="scale_linear" value="0.5"/>
-    <param name="axis_angular" value="0"/>
-    <param name="scale_angular" value="1.5"/>
-    <remap from="/gvr_teleop_joystick/cmd_vel" to="/cmd_vel"/>
-  </node>
+-->
 
 
-  <node pkg="joy" type="joy_node" name="joystick"/>
+  <arg name="joy_config" value="xbox" />
+  <arg name="joy_dev" value="/dev/input/js1" />
+
+
+  <include file="$(find teleop_twist_joy)/launch/teleop.launch">
+      <arg name="config_filepath" value="$(find usma_gvrbot)/config/$(arg joy_config).config.yaml" />
+  </include>
 
 </launch>

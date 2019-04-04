@@ -4,7 +4,7 @@
   <!-- "camera" should uniquely identify the device. All topics are pushed down
        into the "camera" namespace, and it is prepended to tf frame ids. -->
   <arg name="camera"      default="camera"/>
-  <arg name="3d_sensor"   default="$(env GVR_3D_SENSOR)"/>  <!-- kinect, asus_xtion_pro -->
+  <arg name="3d_sensor"   default="$(env GVRBOT_3D_SENSOR)"/>  <!-- kinect, asus_xtion_pro -->
 
   <arg name="publish_tf"                      default="false"/>
   <arg name="ir_processing"                   default="true"/>
