@@ -1,0 +1,15 @@
+<launch>
+
+  <!-- Start the Astra 3d Sensor and RGB Camera -->
+  <include file="$(find gvrbot)/launch/astra_3d_sensor.launch"/>
+
+  <!-- Start the Xbox 360 controller -->
+  <include file="$(find gvrbot)/launch/xbox360_teleop.launch"/>
+
+
+  <!-- Start the Astra 3d Sensor and RGB Camera -->
+  <include file="$(find usma_velodyne)/launch/velodyne32e.launch"/>
+
+  <node type="rviz" name="rviz" pkg="rviz" args="-d $(find usma_velodyne)/launch/velodyne_bare.rviz" />
+
+</launch>
