@@ -1,0 +1,38 @@
+<!--URDF Launch -->
+<launch>
+    <!-- We resume the logic in empty_world.launch, changing only the name of the world to be launched -->
+    <include file="$(find gazebo_ros)/launch/empty_world.launch">
+        <arg name="world_name" value="worlds/empty.world"/> <!-- Note: the world_name is with respect to GAZEBO_RESOURCE_PATH environmental variable -->
+        <arg name="paused" value="true"/>
+        <arg name="use_sim_time" value="true"/>
+        <arg name="gui" value="true"/>
+        <arg name="debug" value="false"/>
+    </include>
+
+    <!-- Convert an xacro and put on parameter server  -->
+	<param name= "robot_description" command="$(find xacro)/xacro --inorder '$(find gvrbot)/models/robots/gvrbot.urdf.xacro'"/>
+
+    <!-- Spawn a robot into Gazebo -->
+    <node name="spawn_urdf" pkg="gazebo_ros" type="spawn_model" args="-z 0.3 -x 0 -param robot_description -urdf -model gvr01" />
+
+	<node pkg="robot_state_publisher" type="state_publisher" name="robot_state_publisher">
+		<param name="publish_frequency" type="double" value="30.0" />
+		<param name="tf_prefix" type="string" value=""/>
+	</node>
+
+	<node name="joint_state_publisher" pkg="joint_state_publisher" type="joint_state_publisher" />
+		
+ 
+    <include file="$(find gvrbot)/launch/xbox360_teleop.launch"/>
+<!--	
+    <node pkg="joy" type="joy_node" name="joy_node" />
+
+    <node pkg="teleop_twist_joy" type="teleop_node" name="teleop_twist_joy">
+      <remap from="cmd_vel" to="/gvrbot/cmd_vel" />
+    </node>
+
+   
+<node pkg="rviz" type="rviz" output="screen" name="rviz" args="-d $(find gvrbot)/launch/gvrbot.rviz"/>
+-->
+
+</launch>

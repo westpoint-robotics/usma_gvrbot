@@ -1,0 +1,15 @@
+uint16 CommandedDutyCycle
+int8 CommandedDirection
+uint8 HBridgeState
+uint16 LO1Status
+uint16 LO2Status
+uint8 HI1Status
+uint8 HI2Status
+int32 PIDError
+int32 PIDPTerm
+int32 PIDITerm
+int32 PIDDTerm
+uint16 ActualFlipperMotorCommand
+uint32 AverageLoopTime
+uint32 MaximumLoopTime
+uint16 NumberOfBadPackets

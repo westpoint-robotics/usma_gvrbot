@@ -1,0 +1,17 @@
+uint16 LeftDACOutput
+uint16 RightDACOutput
+int32 LeftPIDError
+int32 LeftPIDPTerm
+int32 LeftPIDITerm
+int32 LeftPIDDTerm
+int32 RightPIDError
+int32 RightPIDPTerm
+int32 RightPIDITerm
+int32 RightPIDDTerm
+uint16 ActualDriveVelocitySetPoint
+uint16 ActualTurnVelocitySetPoint
+int16 LeftTrackEncoderSpeedSetPoint
+int16 RightTrackEncoderSpeedSetPoint
+uint32 AverageLoopTime
+uint32 MaximumLoopTime
+uint16 NumberOfBadPackets

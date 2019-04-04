@@ -31,3 +31,6 @@ Istructions for connecting remote computers to the GVR-Bot
         + Publish a command velocity message to move the tracks by typing:  `rostopic pub -r 10 /cmd_vel geometry_msgs/Twist  '{linear:  {x: 0.1, y: 0.0, z: 0.0}, angular: {x: 0.0,y: 0.0,z: 0.0}}'`\
         + Stop publishing this command to stop the tracks by pressing cltr+c in the same terminal window.
     + If the GVRbot drove forward then at this point your external Linux computer is configured to control the robot using ROS.
+7.  Test Xbox 360 joystick control by plugging an Xbox joystick into the external Linux computer and run the command:
+    + `roslaunch usma_gvrbot xbox360_teleop.launch`
+    + The deadman switch is the left bumper and the drive stick is the left joystick.
