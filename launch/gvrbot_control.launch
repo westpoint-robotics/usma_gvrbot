@@ -1,8 +1,8 @@
 <launch>
 
-  <!-- Start the Astra 3d Sensor and RGB Camera -->
+  <!-- Start the Astra 3d Sensor and RGB Camera 
   <include file="$(find gvrbot)/launch/astra_3d_sensor.launch"/>
-
+-->
   <!-- Start the Xbox 360 controller -->
   <include file="$(find gvrbot)/launch/xbox360_teleop.launch"/>
 
