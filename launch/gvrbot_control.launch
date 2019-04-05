@@ -7,9 +7,17 @@
   <include file="$(find gvrbot)/launch/xbox360_teleop.launch"/>
 
 
-  <!-- Start the Astra 3d Sensor and RGB Camera -->
+  <!-- Start the Velodyne 32E -->
   <include file="$(find usma_velodyne)/launch/velodyne32e.launch"/>
 
-  <node type="rviz" name="rviz" pkg="rviz" args="-d $(find usma_velodyne)/launch/velodyne_bare.rviz" />
+  <!-- Start the transform publisher -->
+  <include file="$(find gvrbot)/launch/temp_tf.launch"/>
+
+  <!-- Start rviz for vizualization
+  <include file="$(find gvrbot)/launch/gvrbot_viz.launch"/>
+
+   -->
+
+
 
 </launch>

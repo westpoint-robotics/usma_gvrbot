@@ -1,0 +1,35 @@
+<?xml version="1.0"?>
+<launch>
+
+<node pkg="tf" type="static_transform_publisher" name="odom_to_map" args="0 0 0 0 0 0 map odom 100" />
+
+<node pkg="tf" type="static_transform_publisher" name="base_link_to_velodyne"
+    args="0.21 0 1.58 0 0 0 base_link velodyne 100" />
+
+<node pkg="tf" type="static_transform_publisher" name="base_link_to_cns_frame"
+    args="-0.28 0 1.18 0 0 0 base_link cns5000_frame 100" />
+
+<node pkg="tf" type="static_transform_publisher" name="base_link_to_left_wheel_frame"
+    args="0.0 -0.29 0.0 0 0 0 base_link left_wheel_frame 100" />
+
+<node pkg="tf" type="static_transform_publisher" name="base_link_to_right_wheel_frame"
+    args="0.0 0.29 0.0 0 0 0 base_link right_wheel_frame 100" />
+
+<node pkg="tf" type="static_transform_publisher" name="world_to_map" 
+    args="0 0 0 0 0 0 1 world map 100"/>
+
+<node pkg="tf" type="static_transform_publisher" name="base_link_to_imu_frame"
+    args="0.28 0.0 0.39 0 0 0 base_link imu_frame 100" />
+	
+<node pkg="tf" type="static_transform_publisher" name="zed_to_base_link"
+    args="0.44 0.0 1.18 0 0.52 0 base_link zed_current_frame 100" machine="igvc-stereo"/>
+
+<!--<node pkg="tf" type="static_transform_publisher" name="base_footprint_to_base_link"
+    args="0 0 0.11 0 0 0 1 base_footprint base_link 100" /> 
+
+
+
+<node pkg="tf" type="static_transform_publisher" name="odom_to_map"
+    args="0 0 0 0 0 0 1 map odom 100" />-->
+
+</launch>
