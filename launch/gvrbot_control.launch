@@ -8,7 +8,7 @@
 
 
   <!-- Start the Velodyne 32E -->
-  <include file="$(find usma_velodyne)/launch/velodyne32e.launch"/>
+  <include file="$(find gvrbot)/launch/32e_points.launch.launch"/>
 
   <!-- Start the transform publisher -->
   <include file="$(find gvrbot)/launch/temp_tf.launch"/>
