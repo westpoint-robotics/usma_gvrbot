@@ -1,6 +1,6 @@
 <launch>
  
-  <node type="rviz" name="rviz" pkg="rviz" args="-d $(find usmagvrbot_navigator)/launch/gvrbot_2d.rviz" />
+  <node type="rviz" name="rviz" pkg="rviz" args="-d $(find gvrbot)/launch/gvrbot_2d.rviz" />
 
 
 </launch>
