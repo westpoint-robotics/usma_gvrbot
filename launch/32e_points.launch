@@ -20,7 +20,8 @@
   <arg name="laserscan_ring" default="-1" />
   <arg name="laserscan_resolution" default="0.007" />
   <arg name="view_direction" default="0.0" />
-  <arg name="view_width" default="3.14" />
+  <arg name="view_width" value="3.14" />
+    <param name="/velodyne_nodelet_manager_cloud/view_width" value="$(arg view_width)"/>
 
   <!-- start nodelet manager and driver nodelets -->
   <include file="$(find velodyne_driver)/launch/nodelet_manager.launch">
@@ -43,8 +44,6 @@
     <arg name="manager" value="$(arg manager)" />
     <arg name="max_range" value="$(arg max_range)"/>
     <arg name="min_range" value="$(arg min_range)"/>
-    <arg name="view_direction" value="$(arg view_direction)"/>
-    <arg name="view_width" value="$(arg view_width)"/>
   </include>
 
   <!-- start laserscan nodelet -->
