@@ -1,0 +1,43 @@
+<robot
+  name="frame_8020">
+  <link
+    name="base_link">
+    <inertial>
+      <origin
+        xyz="0.13868 -0.31707 0.28419"
+        rpy="0 0 0" />
+      <mass
+        value="4.2785" />
+      <inertia
+        ixx="0.11494"
+        ixy="-6.8249E-05"
+        ixz="-0.00030429"
+        iyy="0.12359"
+        iyz="-0.001274"
+        izz="0.071887" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://gvrbot/models/meshes/frame_8020.STL" />
+      </geometry>
+      <material
+        name="">
+        <color
+          rgba="1 1 1 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://gvrbot/models/meshes/frame_8020.STL" />
+      </geometry>
+    </collision>
+  </link>
+</robot>

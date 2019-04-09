@@ -1,0 +1,38 @@
+<robot xmlns:xacro="http://playerstage.sourceforge.net/gazebo/xmlschema/#interface">
+    <property name="M_PI" value="3.14159"/>
+
+    <macro name="frame_8020" params="parent offset_x offset_y offset_z">
+         
+        <joint name="frame_8020_joint" type="fixed">
+            <origin xyz="${offset_x} ${offset_y} ${offset_z}" rpy="0 0 ${-M_PI/2}" />
+            <parent link="${parent}" />
+            <child link="frame8020_link" />
+        </joint>  
+
+        <link name="frame8020_link">
+            <inertial>
+              <origin xyz="0.13868 -0.31707 0.28419" rpy="0 0 0" />
+              <mass value="4.2785" />
+              <inertia
+                ixx="0.11494" ixy="-6.8249E-05" ixz="-0.00030429"
+                iyy="0.12359" iyz="-0.001274" izz="0.071887" />
+            </inertial>
+            <visual>
+              <origin xyz="0 0 0" rpy="0 0 0" />
+              <geometry>
+                <mesh filename="package://gvrbot/models/meshes/frame_8020.STL" />
+              </geometry>
+              <material name="">
+                <color rgba="1 1 1 1" />
+              </material>
+            </visual>
+            <collision>
+              <origin xyz="0 0 0" rpy="0 0 0" />
+              <geometry>
+                <mesh filename="package://gvrbot/models/meshes/frame_8020.STL" />
+              </geometry>
+            </collision>
+        </link>
+   </macro>
+   
+</robot>

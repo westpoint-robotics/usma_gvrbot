@@ -10,18 +10,10 @@
     </include>
 
     <!-- Convert an xacro and put on parameter server  -->
-	<param name= "robot_description" command="$(find xacro)/xacro --inorder '$(find gvrbot)/models/robots/gvrbot.urdf.xacro'"/>
-
+    <include file="$(find gvrbot)/launch/description.launch"/>
+    
     <!-- Spawn a robot into Gazebo -->
-    <node name="spawn_urdf" pkg="gazebo_ros" type="spawn_model" args="-z 0.3 -x 0 -param robot_description -urdf -model gvr01" />
-
-	<node pkg="robot_state_publisher" type="state_publisher" name="robot_state_publisher">
-		<param name="publish_frequency" type="double" value="30.0" />
-		<param name="tf_prefix" type="string" value=""/>
-	</node>
-
-	<node name="joint_state_publisher" pkg="joint_state_publisher" type="joint_state_publisher" />
-		
+    <node name="spawn_urdf" pkg="gazebo_ros" type="spawn_model" args="-z 0.3 -x 0 -param robot_description -urdf -model gvr01" />		
  
     <include file="$(find gvrbot)/launch/xbox360_teleop.launch"/>
 <!--	

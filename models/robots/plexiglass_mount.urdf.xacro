@@ -6,8 +6,8 @@
   xmlns:interface="http://playerstage.sourceforge.net/gazebo/xmlschema/#interface"
   xmlns:xacro="http://playerstage.sourceforge.net/gazebo/xmlschema/#interface">
 
- <xacro:include filename="$(find gvr_bot)/models/robots/basic_colors.urdf.xacro" />
- <xacro:include filename="$(find gvr_bot)/models/robots/inertial_tensors.urdf.xacro" />
+ <xacro:include filename="$(find gvrbot)/models/robots/basic_colors.urdf.xacro" />
+ <xacro:include filename="$(find gvrbot)/models/robots/inertial_tensors.urdf.xacro" />
 
   <!-- Properties (Constants) -->
   <xacro:property name="M_PI" value="3.14159" />
@@ -23,7 +23,7 @@
         <visual>
           <origin xyz="-0.25 -0.125 -0.03" rpy="0 0 0"/>
           <geometry>
-              <mesh filename="package://gvr_bot/models/meshes/mount_link.STL" />
+              <mesh filename="package://gvrbot/models/meshes/mount_link.STL" />
           </geometry>
           <White />
         </visual>

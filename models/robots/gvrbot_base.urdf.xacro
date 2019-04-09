@@ -6,10 +6,10 @@
     xmlns:controller="http://playerstage.sourceforge.net/gazebo/xmlschema/#controller"
     xmlns:interface="http://playerstage.sourceforge.net/gazebo/xmlschema/#interface">
     
-    <xacro:include filename="$(find gvr_bot)/models/robots/inertial_tensors.urdf.xacro" />
-    <xacro:include filename="$(find gvr_bot)/models/robots/single_wheel.urdf.xacro" />
-    <xacro:include filename="$(find gvr_bot)/models/robots/basic_colors.urdf.xacro" />
-    <xacro:include filename="$(find gvr_bot)/models/robots/plexiglass_mount.urdf.xacro" />
+    <xacro:include filename="$(find gvrbot)/models/robots/inertial_tensors.urdf.xacro" />
+    <xacro:include filename="$(find gvrbot)/models/robots/single_wheel.urdf.xacro" />
+    <xacro:include filename="$(find gvrbot)/models/robots/basic_colors.urdf.xacro" />
+    <xacro:include filename="$(find gvrbot)/models/robots/plexiglass_mount.urdf.xacro" />
     
     <!-- Properties (Constants) -->
     <property name="M_PI" value="3.14159"/>
@@ -24,6 +24,10 @@
     <property name="wheel_mass" value="0.1" />
 
     <property name="wheel_offset_z_from_base_link" value="-${wheel_radius_big}" />
+    
+      <material name="army_green">
+    <color rgba="${42/255} ${46/255} ${18/255} 1.0"/>
+  </material>
     
     <macro name="gvr_base_macro">
         <!-- Links and Joints (i.e., the robot) -->
@@ -45,9 +49,12 @@
             <visual>
                 <origin xyz="${base_size_x - 0.05} 0.0 -${base_size_z * 2}" rpy="0 0 1.57" />
                 <geometry>
-                    <mesh filename="package://gvr_bot/models/meshes/base_link.STL"/>
+                    <mesh filename="package://gvrbot/models/meshes/gvrbot_base.STL"/>
                 </geometry>
-                <Gray />
+                <material name="army_green"/>
+
+ 
+
             </visual>
             <!--visual>
                 <origin xyz="0.0 0.0 -0.085" rpy="0 0 0" />
@@ -93,17 +100,17 @@
                 <interface:position name="position_iface_2"/>
                 <robotNamespace>/</robotNamespace>
                 <robotBaseFrame>base_link</robotBaseFrame>
-                <commandTopic>/gvr_bot/cmd_vel</commandTopic>
+                <commandTopic>/gvrbot/cmd_vel</commandTopic>
                 <publishOdometryTf>1</publishOdometryTf>
                 <publishOdometryMsg>1</publishOdometryMsg>
-                <odometryTopic>/gvr_bot/odom</odometryTopic>
+                <odometryTopic>/gvrbot/odom</odometryTopic>
         </plugin>
         
         <plugin name="p3d_base_controller" filename="libgazebo_ros_p3d.so">
           <alwaysOn>true</alwaysOn>
           <updateRate>50.0</updateRate>
           <bodyName>base_link</bodyName>
-          <topicName>/gvr_bot/ground_truth/state</topicName>
+          <topicName>/gvrbot/ground_truth/state</topicName>
           <gaussianNoise>0.01</gaussianNoise>
           <frameName>world</frameName>
           <xyzOffsets>0 0 0</xyzOffsets>
@@ -114,7 +121,7 @@
           <alwaysOn>true</alwaysOn>
           <updateRate>50.0</updateRate>
           <bodyName>base_link</bodyName>
-          <topicName>/gvr_bot/imu_quat</topicName>
+          <topicName>/gvrbot/imu_quat</topicName>
           <accelDrift>0.0 0.0 0.0</accelDrift>
           <accelGaussianNoise>0.1 0.1 0.1</accelGaussianNoise>
           <rateDrift>0.0 0.0 0.0</rateDrift>

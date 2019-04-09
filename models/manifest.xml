@@ -1,5 +1,5 @@
 <package>
-  <description brief="gvr_bot">gvr_bot</description>
+  <description brief="gvrbot">gvrbot</description>
   <depend package="gazebo" />
   <author>me</author>
   <license>BSD</license>
