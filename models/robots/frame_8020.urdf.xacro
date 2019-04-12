@@ -1,7 +1,7 @@
-<robot xmlns:xacro="http://playerstage.sourceforge.net/gazebo/xmlschema/#interface">
-    <property name="M_PI" value="3.14159"/>
+<robot xmlns:xacro="http://www.ros.org/wiki/xacro">
+    <xacro:property name="M_PI" value="3.14159"/>
 
-    <macro name="frame_8020" params="parent offset_x offset_y offset_z">
+    <xacro:macro name="frame_8020" params="parent offset_x offset_y offset_z">
          
         <joint name="frame_8020_joint" type="fixed">
             <origin xyz="${offset_x} ${offset_y} ${offset_z}" rpy="0 0 ${-M_PI/2}" />
@@ -33,6 +33,6 @@
               </geometry>
             </collision>
         </link>
-   </macro>
+   </xacro:macro>
    
 </robot>
