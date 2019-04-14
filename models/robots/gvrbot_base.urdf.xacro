@@ -6,8 +6,8 @@
     
     <xacro:include filename="$(find gvrbot)/models/robots/inertial_tensors.urdf.xacro" />
     <xacro:include filename="$(find gvrbot)/models/robots/single_wheel.urdf.xacro" />
+    <xacro:include filename="$(find gvrbot)/models/robots/track_wheel.urdf.xacro" />
     <xacro:include filename="$(find gvrbot)/models/robots/basic_colors.urdf.xacro" />
-    <xacro:include filename="$(find gvrbot)/models/robots/plexiglass_mount.urdf.xacro" />
     
     <!-- Properties (Constants) -->
     <xacro:property name="M_PI" value="3.14159"/>
@@ -35,8 +35,13 @@
           <parent link="base_link"/>
           <child link="base_footprint"/>
         </joint>
-
-        <link name="base_link">
+        <link name="base_link"/>
+         <joint name="chasis_to_bl" type="fixed">
+          <origin xyz="0.0 0.0 0.0" rpy="0.0 0.0 0.0" />
+          <parent link="base_link"/>
+          <child link="chasis_link"/>
+        </joint>       
+        <link name="chasis_link">
             <inertial>
                 <mass value="${base_mass}" />
                 <origin xyz="0.0 0.0 0.0" rpy="0 0 0" />
@@ -50,9 +55,6 @@
                     <mesh filename="package://gvrbot/models/meshes/gvrbot_base.STL"/>
                 </geometry>
                 <material name="army_green"/>
-
- 
-
             </visual>
             <!--visual>
                 <origin xyz="0.0 0.0 -0.085" rpy="0 0 0" />
@@ -70,33 +72,42 @@
             </collision>
         </link>
         
+
         
-        <tracked_wheel parent="base_link" prefix="left_0"  offset_x=" 0.25100" offset_y=" ${base_size_y / 2}" offset_z="${wheel_offset_z_from_base_link}      " reflect="1" radius="${wheel_radius_big}" height="${wheel_size_y}" mass="${wheel_mass}"/>
-        <tracked_wheel parent="base_link" prefix="left_1"  offset_x=" 0.00000" offset_y=" ${base_size_y / 2}" offset_z="${wheel_offset_z_from_base_link-0.005}" reflect="1" radius="${wheel_radius_big}" height="${wheel_size_y}" mass="${wheel_mass}"/>
-        <tracked_wheel parent="base_link" prefix="left_2"  offset_x="-0.25100" offset_y=" ${base_size_y / 2}" offset_z="${wheel_offset_z_from_base_link}      " reflect="1" radius="${wheel_radius_big}" height="${wheel_size_y}" mass="${wheel_mass}"/>
-        <tracked_wheel parent="base_link" prefix="left_3"  offset_x=" 0.10550" offset_y=" ${base_size_y / 2}" offset_z="${wheel_offset_z_from_base_link}      " reflect="1" radius="${wheel_radius_big}" height="${wheel_size_y}" mass="${wheel_mass}"/>
-        <tracked_wheel parent="base_link" prefix="left_4"  offset_x="-0.10550" offset_y=" ${base_size_y / 2}" offset_z="${wheel_offset_z_from_base_link}      " reflect="1" radius="${wheel_radius_big}" height="${wheel_size_y}" mass="${wheel_mass}"/>
-        <tracked_wheel parent="base_link" prefix="left_5"  offset_x=" 0.00500" offset_y=" ${base_size_y / 2}" offset_z="${wheel_offset_z_from_base_link+0.005}" reflect="1" radius="${wheel_radius_big}" height="${wheel_size_y}" mass="${wheel_mass}"/>
-        <tracked_wheel parent="base_link" prefix="right_0" offset_x=" 0.25100" offset_y="-${base_size_y / 2}" offset_z="${wheel_offset_z_from_base_link}      " reflect="1" radius="${wheel_radius_big}" height="${wheel_size_y}" mass="${wheel_mass}"/>
-        <tracked_wheel parent="base_link" prefix="right_1" offset_x=" 0.00000" offset_y="-${base_size_y / 2}" offset_z="${wheel_offset_z_from_base_link-0.005}" reflect="1" radius="${wheel_radius_big}" height="${wheel_size_y}" mass="${wheel_mass}"/>
-        <tracked_wheel parent="base_link" prefix="right_2" offset_x="-0.25100" offset_y="-${base_size_y / 2}" offset_z="${wheel_offset_z_from_base_link}      " reflect="1" radius="${wheel_radius_big}" height="${wheel_size_y}" mass="${wheel_mass}"/>
+        <tracked_wheel2 parent="base_link" prefix="left_0"  offset_x=" 0.25100" offset_y=" ${base_size_y / 2}" offset_z="${wheel_offset_z_from_base_link}      " reflect="1" radius="${wheel_radius_big}" height="${wheel_size_y}" mass="${wheel_mass}"/>
+        <tracked_wheel2 parent="base_link" prefix="left_1"  offset_x=" 0.00000" offset_y=" ${base_size_y / 2}" offset_z="${wheel_offset_z_from_base_link-0.005}" reflect="1" radius="${wheel_radius_big}" height="${wheel_size_y}" mass="${wheel_mass}"/>
+        <tracked_wheel2 parent="base_link" prefix="left_2"  offset_x="-0.25100" offset_y=" ${base_size_y / 2}" offset_z="${wheel_offset_z_from_base_link}      " reflect="1" radius="${wheel_radius_big}" height="${wheel_size_y}" mass="${wheel_mass}"/>
+        <tracked_wheel2 parent="base_link" prefix="right_0" offset_x=" 0.25100" offset_y="-${base_size_y / 2}" offset_z="${wheel_offset_z_from_base_link}      " reflect="1" radius="${wheel_radius_big}" height="${wheel_size_y}" mass="${wheel_mass}"/>
+        <tracked_wheel2 parent="base_link" prefix="right_1" offset_x=" 0.00000" offset_y="-${base_size_y / 2}" offset_z="${wheel_offset_z_from_base_link-0.005}" reflect="1" radius="${wheel_radius_big}" height="${wheel_size_y}" mass="${wheel_mass}"/>
+        <tracked_wheel2 parent="base_link" prefix="right_2" offset_x="-0.25100" offset_y="-${base_size_y / 2}" offset_z="${wheel_offset_z_from_base_link}      " reflect="1" radius="${wheel_radius_big}" height="${wheel_size_y}" mass="${wheel_mass}"/>
+        <!-- 
         <tracked_wheel parent="base_link" prefix="right_3" offset_x="-0.10550" offset_y="-${base_size_y / 2}" offset_z="${wheel_offset_z_from_base_link}      " reflect="1" radius="${wheel_radius_big}" height="${wheel_size_y}" mass="${wheel_mass}"/>
         <tracked_wheel parent="base_link" prefix="right_4" offset_x=" 0.10550" offset_y="-${base_size_y / 2}" offset_z="${wheel_offset_z_from_base_link}      " reflect="1" radius="${wheel_radius_big}" height="${wheel_size_y}" mass="${wheel_mass}"/>
         <tracked_wheel parent="base_link" prefix="right_5" offset_x=" 0.00500" offset_y="-${base_size_y / 2}" offset_z="${wheel_offset_z_from_base_link+0.005}" reflect="1" radius="${wheel_radius_big}" height="${wheel_size_y}" mass="${wheel_mass}"/>
         
+        <tracked_wheel parent="base_link" prefix="left_3"  offset_x=" 0.10550" offset_y=" ${base_size_y / 2}" offset_z="${wheel_offset_z_from_base_link}      " reflect="1" radius="${wheel_radius_big}" height="${wheel_size_y}" mass="${wheel_mass}"/>
+        <tracked_wheel parent="base_link" prefix="left_4"  offset_x="-0.10550" offset_y=" ${base_size_y / 2}" offset_z="${wheel_offset_z_from_base_link}      " reflect="1" radius="${wheel_radius_big}" height="${wheel_size_y}" mass="${wheel_mass}"/>
+        <tracked_wheel parent="base_link" prefix="left_5"  offset_x=" 0.00500" offset_y=" ${base_size_y / 2}" offset_z="${wheel_offset_z_from_base_link+0.005}" reflect="1" radius="${wheel_radius_big}" height="${wheel_size_y}" mass="${wheel_mass}"/>
+        
+        
+                <leftJoints>left_0_wheel_joint left_1_wheel_joint left_2_wheel_joint left_3_wheel_joint left_4_wheel_joint left_5_wheel_joint</leftJoints>
+                <rightJoints>right_0_wheel_joint right_1_wheel_joint right_2_wheel_joint right_3_wheel_joint right_4_wheel_joint right_5_wheel_joint</rightJoints>
+        
+        
+         -->
         <gazebo>
         
         <!-- TODO: make custom plugin for this that doesn't require an imu -->
         <plugin name="diffdrive_plugin_multiwheel" filename="libdiffdrive_plugin_multi_wheel.so">                
                 <alwaysOn>true</alwaysOn>
                 <updateRate>50.0</updateRate>
-                <leftJoints>left_0_wheel_joint left_1_wheel_joint left_2_wheel_joint left_3_wheel_joint left_4_wheel_joint left_5_wheel_joint</leftJoints>
-                <rightJoints>right_0_wheel_joint right_1_wheel_joint right_2_wheel_joint right_3_wheel_joint right_4_wheel_joint right_5_wheel_joint</rightJoints>
+                <leftJoints>left_0_wheel_joint left_1_wheel_joint left_2_wheel_joint</leftJoints>
+                <rightJoints>right_0_wheel_joint right_1_wheel_joint right_2_wheel_joint</rightJoints>
                 <wheelSeparation>${base_size_y}</wheelSeparation>
                 <wheelDiameter>${wheel_radius_big*2}</wheelDiameter>
                 <torque>50000</torque>
                 <interface:position name="position_iface_2"/>
-                <robotNamespace>/</robotNamespace>
+                <robotNamespace>/gvrbot</robotNamespace>
                 <robotBaseFrame>base_link</robotBaseFrame>
                 <commandTopic>/cmd_vel</commandTopic>
                 <publishOdometryTf>1</publishOdometryTf>
