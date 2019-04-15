@@ -7,6 +7,7 @@
     <xacro:include filename="$(find gvrbot)/models/robots/inertial_tensors.urdf.xacro" />
     <xacro:include filename="$(find gvrbot)/models/robots/single_wheel.urdf.xacro" />
     <xacro:include filename="$(find gvrbot)/models/robots/track_wheel.urdf.xacro" />
+    <xacro:include filename="$(find gvrbot)/models/robots/track_wheel3.urdf.xacro" />
     <xacro:include filename="$(find gvrbot)/models/robots/basic_colors.urdf.xacro" />
     
     <!-- Properties (Constants) -->
@@ -35,13 +36,15 @@
           <parent link="base_link"/>
           <child link="base_footprint"/>
         </joint>
-        <link name="base_link"/>
-         <joint name="chasis_to_bl" type="fixed">
-          <origin xyz="0.0 0.0 0.0" rpy="0.0 0.0 0.0" />
-          <parent link="base_link"/>
-          <child link="chasis_link"/>
-        </joint>       
-        <link name="chasis_link">
+        
+        <link name="base_link"></link>
+        <joint name="base_link_joint" type="fixed">
+            <origin xyz="0 0 0" rpy="0 0 0" />
+            <parent link="base_link"/>
+            <child link="chassis_link" />
+        </joint>
+             
+        <link name="chassis_link">
             <inertial>
                 <mass value="${base_mass}" />
                 <origin xyz="0.0 0.0 0.0" rpy="0 0 0" />
@@ -74,12 +77,12 @@
         
 
         
-        <tracked_wheel2 parent="base_link" prefix="left_0"  offset_x=" 0.25100" offset_y=" ${base_size_y / 2}" offset_z="${wheel_offset_z_from_base_link}      " reflect="1" radius="${wheel_radius_big}" height="${wheel_size_y}" mass="${wheel_mass}"/>
-        <tracked_wheel2 parent="base_link" prefix="left_1"  offset_x=" 0.00000" offset_y=" ${base_size_y / 2}" offset_z="${wheel_offset_z_from_base_link-0.005}" reflect="1" radius="${wheel_radius_big}" height="${wheel_size_y}" mass="${wheel_mass}"/>
-        <tracked_wheel2 parent="base_link" prefix="left_2"  offset_x="-0.25100" offset_y=" ${base_size_y / 2}" offset_z="${wheel_offset_z_from_base_link}      " reflect="1" radius="${wheel_radius_big}" height="${wheel_size_y}" mass="${wheel_mass}"/>
-        <tracked_wheel2 parent="base_link" prefix="right_0" offset_x=" 0.25100" offset_y="-${base_size_y / 2}" offset_z="${wheel_offset_z_from_base_link}      " reflect="1" radius="${wheel_radius_big}" height="${wheel_size_y}" mass="${wheel_mass}"/>
-        <tracked_wheel2 parent="base_link" prefix="right_1" offset_x=" 0.00000" offset_y="-${base_size_y / 2}" offset_z="${wheel_offset_z_from_base_link-0.005}" reflect="1" radius="${wheel_radius_big}" height="${wheel_size_y}" mass="${wheel_mass}"/>
-        <tracked_wheel2 parent="base_link" prefix="right_2" offset_x="-0.25100" offset_y="-${base_size_y / 2}" offset_z="${wheel_offset_z_from_base_link}      " reflect="1" radius="${wheel_radius_big}" height="${wheel_size_y}" mass="${wheel_mass}"/>
+        <tracked_wheel3 parent="base_link" prefix="left_0"  offset_x=" 0.25100" offset_y=" ${base_size_y / 2}" offset_z="${wheel_offset_z_from_base_link}      " reflect="1" radius="${wheel_radius_big}" height="${wheel_size_y}" mass="${wheel_mass}"/>
+        <tracked_wheel3 parent="base_link" prefix="left_1"  offset_x=" 0.00000" offset_y=" ${base_size_y / 2}" offset_z="${wheel_offset_z_from_base_link-0.005}" reflect="1" radius="${wheel_radius_big}" height="${wheel_size_y}" mass="${wheel_mass}"/>
+        <tracked_wheel3 parent="base_link" prefix="left_2"  offset_x="-0.25100" offset_y=" ${base_size_y / 2}" offset_z="${wheel_offset_z_from_base_link}      " reflect="1" radius="${wheel_radius_big}" height="${wheel_size_y}" mass="${wheel_mass}"/>
+        <tracked_wheel3 parent="base_link" prefix="right_0" offset_x=" 0.25100" offset_y="-${base_size_y / 2}" offset_z="${wheel_offset_z_from_base_link}      " reflect="1" radius="${wheel_radius_big}" height="${wheel_size_y}" mass="${wheel_mass}"/>
+        <tracked_wheel3 parent="base_link" prefix="right_1" offset_x=" 0.00000" offset_y="-${base_size_y / 2}" offset_z="${wheel_offset_z_from_base_link-0.005}" reflect="1" radius="${wheel_radius_big}" height="${wheel_size_y}" mass="${wheel_mass}"/>
+        <tracked_wheel3 parent="base_link" prefix="right_2" offset_x="-0.25100" offset_y="-${base_size_y / 2}" offset_z="${wheel_offset_z_from_base_link}      " reflect="1" radius="${wheel_radius_big}" height="${wheel_size_y}" mass="${wheel_mass}"/>
         <!-- 
         <tracked_wheel parent="base_link" prefix="right_3" offset_x="-0.10550" offset_y="-${base_size_y / 2}" offset_z="${wheel_offset_z_from_base_link}      " reflect="1" radius="${wheel_radius_big}" height="${wheel_size_y}" mass="${wheel_mass}"/>
         <tracked_wheel parent="base_link" prefix="right_4" offset_x=" 0.10550" offset_y="-${base_size_y / 2}" offset_z="${wheel_offset_z_from_base_link}      " reflect="1" radius="${wheel_radius_big}" height="${wheel_size_y}" mass="${wheel_mass}"/>
@@ -96,8 +99,7 @@
         
          -->
         <gazebo>
-        
-        <!-- TODO: make custom plugin for this that doesn't require an imu -->
+         
         <plugin name="diffdrive_plugin_multiwheel" filename="libdiffdrive_plugin_multi_wheel.so">                
                 <alwaysOn>true</alwaysOn>
                 <updateRate>50.0</updateRate>
@@ -115,6 +117,35 @@
                 <odometryTopic>/gvrbot/odom</odometryTopic>
                 <odometryFrame>odom</odometryFrame>
         </plugin>
+
+        <!--     
+        <plugin name="gazebo_ros_control" filename="libgazebo_ros_control.so">
+            <robotNamespace>/</robotNamespace>
+            <legacyModeNS>true</legacyModeNS>
+        </plugin>
+    
+  <plugin name="skid_steer_drive_controller" filename="libgazebo_ros_skid_steer_drive.so">
+    <updateRate>100.0</updateRate>
+    <robotNamespace>/</robotNamespace>
+    <leftFrontJoint>left_0_wheel_joint</leftFrontJoint>
+    <rightFrontJoint>right_0_wheel_joint</rightFrontJoint>
+    <leftRearJoint>left_2_wheel_joint</leftRearJoint>
+    <rightRearJoint>right_2_wheel_joint</rightRearJoint>
+    <wheelSeparation>0.602</wheelSeparation>
+    <wheelDiameter>0.17</wheelDiameter>
+    <robotBaseFrame>base_link</robotBaseFrame>
+    <MaxForce>5.0</MaxForce>
+    <torque>200</torque>
+    <commandTopic>cmd_vel</commandTopic>
+    <odometryTopic>odom</odometryTopic>
+    <odometryFrame>odom</odometryFrame>
+    <broadcastTF>1</broadcastTF>
+    <covariance_x>0.0</covariance_x>
+    <covariance_y>0.0</covariance_y>
+    <covariance_yaw>0.0</covariance_yaw>
+  </plugin>
+
+
         
         <plugin name="p3d_base_controller" filename="libgazebo_ros_p3d.so">
           <alwaysOn>true</alwaysOn>
@@ -128,10 +159,11 @@
         </plugin>
 
         <plugin name="imu_controller" filename="libhector_gazebo_ros_imu.so">
+          <robotNamespace>/</robotNamespace>
           <alwaysOn>true</alwaysOn>
           <updateRate>50.0</updateRate>
           <bodyName>base_link</bodyName>
-          <topicName>/gvrbot/imu_quat</topicName>
+          <topicName>/gvrbot/data</topicName>
           <accelDrift>0.0 0.0 0.0</accelDrift>
           <accelGaussianNoise>0.1 0.1 0.1</accelGaussianNoise>
           <rateDrift>0.0 0.0 0.0</rateDrift>
@@ -142,6 +174,8 @@
           <rpyOffset>0 0 0</rpyOffset>
           
         </plugin>
+        
+-->
             
         </gazebo>
         
