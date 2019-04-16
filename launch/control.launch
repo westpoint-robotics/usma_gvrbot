@@ -1,0 +1,13 @@
+<launch>
+  <rosparam command="load" file="$(find gvrbot)/config/control.yaml" />
+
+  <node name="controller_spawner" pkg="controller_manager" type="spawner"
+        args="gvrbot_joint_publisher gvrbot_velocity_controller" />
+
+  <node pkg="twist_mux" type="twist_mux" name="twist_mux">
+    <rosparam command="load" file="$(find gvrbot)/config/twist_mux.yaml" />
+    <remap from="cmd_vel_out" to="gvrbot_velocity_controller/cmd_vel"/>
+  </node>
+
+</launch>
+

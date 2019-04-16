@@ -24,9 +24,7 @@
 
     <xacro:property name="wheel_offset_z_from_base_link" value="-${wheel_radius_big}" />
     
-      <material name="army_green">
-    <color rgba="${42/255} ${46/255} ${18/255} 1.0"/>
-  </material>
+      <material name="army_green"><color rgba="${42/255} ${46/255} ${18/255} 1.0"/></material>
     
     <xacro:macro name="gvr_base_macro">
         <!-- Links and Joints (i.e., the robot) -->
