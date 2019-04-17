@@ -11,6 +11,7 @@
 
     <!-- Convert an xacro and put on parameter server  -->
     <include file="$(find gvrbot)/launch/description.launch"/>
+    <include file="$(find gvrbot)/launch/control.launch"/>
     
     <!-- Spawn a robot into Gazebo -->
     <node name="spawn_urdf" pkg="gazebo_ros" type="spawn_model" args="-z 0.3 -x 0 -param robot_description -urdf -model gvr01" />		
