@@ -6,12 +6,9 @@
     
     <xacro:include filename="$(find gvrbot)/models/robots/inertial_tensors.urdf.xacro" />
     <xacro:include filename="$(find gvrbot)/models/robots/single_wheel.urdf.xacro" />
-    <xacro:include filename="$(find gvrbot)/models/robots/track_wheel.urdf.xacro" />
-    <xacro:include filename="$(find gvrbot)/models/robots/track_wheel3.urdf.xacro" />
-    <xacro:include filename="$(find gvrbot)/models/robots/basic_colors.urdf.xacro" />
     
     <!-- Properties (Constants) -->
-    <xacro:property name="M_PI" value="3.14159"/>
+    <xacro:property name="PI" value="3.1415926535897931" />
     
     <xacro:property name="base_size_x" value="0.380" />
     <xacro:property name="base_size_y" value="0.3" />
@@ -24,9 +21,10 @@
 
     <xacro:property name="wheel_offset_z_from_base_link" value="-${wheel_radius_big}" />
     
-      <material name="army_green"><color rgba="${42/255} ${46/255} ${18/255} 1.0"/></material>
+    <material name="army_green"><color rgba="${42/255} ${46/255} ${18/255} 1.0"/></material>
     
     <xacro:macro name="gvr_base_macro">
+    
         <!-- Links and Joints (i.e., the robot) -->
         <link name="base_footprint"/>
         <joint name="bf_to_bl" type="fixed">
@@ -73,108 +71,55 @@
             </collision>
         </link>
         
+        <xacro:property name="wheelbase" value="0.50" />
+        <xacro:property name="track" value="0.33" />
+        <xacro:property name="wheel_vertical_offset" value="-0.09" />
+        <xacro:property name="wheel_radius" value="0.15" />  <!--  098   -->
+        <xacro:property name="wheel_width" value="0.040" />
 
-        
-        <tracked_wheel3 parent="base_link" prefix="left_0"  offset_x=" 0.25100" offset_y=" ${base_size_y / 2}" offset_z="${wheel_offset_z_from_base_link}      " reflect="1" radius="${wheel_radius_big}" height="${wheel_size_y}" mass="${wheel_mass}"/>
-        <tracked_wheel3 parent="base_link" prefix="left_1"  offset_x=" 0.00000" offset_y=" ${base_size_y / 2}" offset_z="${wheel_offset_z_from_base_link-0.005}" reflect="1" radius="${wheel_radius_big}" height="${wheel_size_y}" mass="${wheel_mass}"/>
-        <tracked_wheel3 parent="base_link" prefix="left_2"  offset_x="-0.25100" offset_y=" ${base_size_y / 2}" offset_z="${wheel_offset_z_from_base_link}      " reflect="1" radius="${wheel_radius_big}" height="${wheel_size_y}" mass="${wheel_mass}"/>
-        <tracked_wheel3 parent="base_link" prefix="right_0" offset_x=" 0.25100" offset_y="-${base_size_y / 2}" offset_z="${wheel_offset_z_from_base_link}      " reflect="1" radius="${wheel_radius_big}" height="${wheel_size_y}" mass="${wheel_mass}"/>
-        <tracked_wheel3 parent="base_link" prefix="right_1" offset_x=" 0.00000" offset_y="-${base_size_y / 2}" offset_z="${wheel_offset_z_from_base_link-0.005}" reflect="1" radius="${wheel_radius_big}" height="${wheel_size_y}" mass="${wheel_mass}"/>
-        <tracked_wheel3 parent="base_link" prefix="right_2" offset_x="-0.25100" offset_y="-${base_size_y / 2}" offset_z="${wheel_offset_z_from_base_link}      " reflect="1" radius="${wheel_radius_big}" height="${wheel_size_y}" mass="${wheel_mass}"/>
-        <!-- 
-        <tracked_wheel parent="base_link" prefix="right_3" offset_x="-0.10550" offset_y="-${base_size_y / 2}" offset_z="${wheel_offset_z_from_base_link}      " reflect="1" radius="${wheel_radius_big}" height="${wheel_size_y}" mass="${wheel_mass}"/>
-        <tracked_wheel parent="base_link" prefix="right_4" offset_x=" 0.10550" offset_y="-${base_size_y / 2}" offset_z="${wheel_offset_z_from_base_link}      " reflect="1" radius="${wheel_radius_big}" height="${wheel_size_y}" mass="${wheel_mass}"/>
-        <tracked_wheel parent="base_link" prefix="right_5" offset_x=" 0.00500" offset_y="-${base_size_y / 2}" offset_z="${wheel_offset_z_from_base_link+0.005}" reflect="1" radius="${wheel_radius_big}" height="${wheel_size_y}" mass="${wheel_mass}"/>
-        
-        <tracked_wheel parent="base_link" prefix="left_3"  offset_x=" 0.10550" offset_y=" ${base_size_y / 2}" offset_z="${wheel_offset_z_from_base_link}      " reflect="1" radius="${wheel_radius_big}" height="${wheel_size_y}" mass="${wheel_mass}"/>
-        <tracked_wheel parent="base_link" prefix="left_4"  offset_x="-0.10550" offset_y=" ${base_size_y / 2}" offset_z="${wheel_offset_z_from_base_link}      " reflect="1" radius="${wheel_radius_big}" height="${wheel_size_y}" mass="${wheel_mass}"/>
-        <tracked_wheel parent="base_link" prefix="left_5"  offset_x=" 0.00500" offset_y=" ${base_size_y / 2}" offset_z="${wheel_offset_z_from_base_link+0.005}" reflect="1" radius="${wheel_radius_big}" height="${wheel_size_y}" mass="${wheel_mass}"/>
-        
-        
-                <leftJoints>left_0_wheel_joint left_1_wheel_joint left_2_wheel_joint left_3_wheel_joint left_4_wheel_joint left_5_wheel_joint</leftJoints>
-                <rightJoints>right_0_wheel_joint right_1_wheel_joint right_2_wheel_joint right_3_wheel_joint right_4_wheel_joint right_5_wheel_joint</rightJoints>
-        
-        
-         -->
+        <xacro:wheel prefix="front_left">
+            <origin xyz="${wheelbase/2-0.03} ${track/2} ${wheel_vertical_offset}" rpy="0 0 0" />
+        </xacro:wheel>
+        <xacro:wheel prefix="front_right">
+            <origin xyz="${wheelbase/2-0.03} ${-track/2} ${wheel_vertical_offset}" rpy="0 0 0" />
+        </xacro:wheel>
+        <xacro:wheel prefix="rear_left">
+            <origin xyz="${-wheelbase/2-0.03} ${track/2} ${wheel_vertical_offset}" rpy="0 0 0" />
+        </xacro:wheel>
+        <xacro:wheel prefix="rear_right">
+            <origin xyz="${-wheelbase/2-0.03} ${-track/2} ${wheel_vertical_offset}" rpy="0 0 0" />
+        </xacro:wheel>
+      
         <gazebo>
-         
-        <plugin name="diffdrive_plugin_multiwheel" filename="libdiffdrive_plugin_multi_wheel.so">                
+            <plugin name="gazebo_ros_control" filename="libgazebo_ros_control.so">
+                <robotNamespace>/</robotNamespace>
+                <legacyModeNS>true</legacyModeNS>
+            </plugin>
+            <plugin name="p3d_base_controller" filename="libgazebo_ros_p3d.so">
                 <alwaysOn>true</alwaysOn>
                 <updateRate>50.0</updateRate>
-                <leftJoints>left_0_wheel_joint left_1_wheel_joint left_2_wheel_joint</leftJoints>
-                <rightJoints>right_0_wheel_joint right_1_wheel_joint right_2_wheel_joint</rightJoints>
-                <wheelSeparation>${base_size_y}</wheelSeparation>
-                <wheelDiameter>${wheel_radius_big*2}</wheelDiameter>
-                <torque>50000</torque>
-                <interface:position name="position_iface_2"/>
-                <robotNamespace>/gvrbot</robotNamespace>
-                <robotBaseFrame>base_link</robotBaseFrame>
-                <commandTopic>/cmd_vel</commandTopic>
-                <publishOdometryTf>1</publishOdometryTf>
-                <publishOdometryMsg>1</publishOdometryMsg>
-                <odometryTopic>/gvrbot/odom</odometryTopic>
-                <odometryFrame>odom</odometryFrame>
-        </plugin>
-
-        <!--     
-        <plugin name="gazebo_ros_control" filename="libgazebo_ros_control.so">
-            <robotNamespace>/</robotNamespace>
-            <legacyModeNS>true</legacyModeNS>
-        </plugin>
-    
-  <plugin name="skid_steer_drive_controller" filename="libgazebo_ros_skid_steer_drive.so">
-    <updateRate>100.0</updateRate>
-    <robotNamespace>/</robotNamespace>
-    <leftFrontJoint>left_0_wheel_joint</leftFrontJoint>
-    <rightFrontJoint>right_0_wheel_joint</rightFrontJoint>
-    <leftRearJoint>left_2_wheel_joint</leftRearJoint>
-    <rightRearJoint>right_2_wheel_joint</rightRearJoint>
-    <wheelSeparation>0.602</wheelSeparation>
-    <wheelDiameter>0.17</wheelDiameter>
-    <robotBaseFrame>base_link</robotBaseFrame>
-    <MaxForce>5.0</MaxForce>
-    <torque>200</torque>
-    <commandTopic>cmd_vel</commandTopic>
-    <odometryTopic>odom</odometryTopic>
-    <odometryFrame>odom</odometryFrame>
-    <broadcastTF>1</broadcastTF>
-    <covariance_x>0.0</covariance_x>
-    <covariance_y>0.0</covariance_y>
-    <covariance_yaw>0.0</covariance_yaw>
-  </plugin>
-
-
-        
-        <plugin name="p3d_base_controller" filename="libgazebo_ros_p3d.so">
-          <alwaysOn>true</alwaysOn>
-          <updateRate>50.0</updateRate>
-          <bodyName>base_link</bodyName>
-          <topicName>/gvrbot/ground_truth/state</topicName>
-          <gaussianNoise>0.01</gaussianNoise>
-          <frameName>world</frameName>
-          <xyzOffsets>0 0 0</xyzOffsets>
-          <rpyOffsets>0 0 0</rpyOffsets>
-        </plugin>
-
-        <plugin name="imu_controller" filename="libhector_gazebo_ros_imu.so">
-          <robotNamespace>/</robotNamespace>
-          <alwaysOn>true</alwaysOn>
-          <updateRate>50.0</updateRate>
-          <bodyName>base_link</bodyName>
-          <topicName>/gvrbot/data</topicName>
-          <accelDrift>0.0 0.0 0.0</accelDrift>
-          <accelGaussianNoise>0.1 0.1 0.1</accelGaussianNoise>
-          <rateDrift>0.0 0.0 0.0</rateDrift>
-          <rateGaussianNoise>0.05 0.05 0.05</rateGaussianNoise>
-          <headingDrift>0.0</headingDrift>
-          <headingGaussianNoise>0.05</headingGaussianNoise>
-          <xyzOffset>0 0 0</xyzOffset>
-          <rpyOffset>0 0 0</rpyOffset>
-          
-        </plugin>
-        
--->
-            
+                <bodyName>base_link</bodyName>
+                <topicName>/gvrbot/ground_truth/state</topicName>
+                <gaussianNoise>0.01</gaussianNoise>
+                <frameName>world</frameName>
+                <xyzOffsets>0 0 0</xyzOffsets>
+                <rpyOffsets>0 0 0</rpyOffsets>
+            </plugin>
+            <plugin name="imu_controller" filename="libhector_gazebo_ros_imu.so">
+                <robotNamespace>/</robotNamespace>
+                <alwaysOn>true</alwaysOn>
+                <updateRate>50.0</updateRate>
+                <bodyName>base_link</bodyName>          
+                <topicName>imu/data</topicName>
+                <accelDrift>0.005 0.005 0.005</accelDrift>
+                <accelGaussianNoise>0.005 0.005 0.005</accelGaussianNoise>
+                <rateDrift>0.005 0.005 0.005 </rateDrift>
+                <rateGaussianNoise>0.005 0.005 0.005 </rateGaussianNoise>
+                <headingDrift>0.005</headingDrift>
+                <headingGaussianNoise>0.005</headingGaussianNoise>
+                <xyzOffset>0 0 0</xyzOffset>
+                <rpyOffset>0 0 0</rpyOffset>          
+            </plugin>      
         </gazebo>
         
     </xacro:macro>

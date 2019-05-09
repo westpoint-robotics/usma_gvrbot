@@ -1,69 +1,38 @@
 <?xml version="1.0"?>
-
-<robot
-  xmlns:xacro="http://www.ros.org/wiki/xacro">
-
- <xacro:include filename="$(find gvrbot)/models/robots/basic_colors.urdf.xacro" />
- <xacro:include filename="$(find gvrbot)/models/robots/inertial_tensors.urdf.xacro" />
-
-  <!-- Properties (Constants) -->
-  <xacro:property name="M_PI" value="3.14159" />
-  
-  <xacro:macro name="tracked_wheel" params="parent prefix offset_x offset_y offset_z reflect radius height mass">
-    
-    <joint name="${prefix}_wheel_joint" type="continuous">
-      <origin xyz="${offset_x} ${offset_y * reflect} ${offset_z}" rpy="0 0 0" />
-      <parent link="${parent}" />
-      <child link="${prefix}_wheel_link" />
-      <axis xyz="0 1 0" />
-      <limit effort="100" velocity="100" />
-      <joint_properties damping="0.0" friction="0.0" />
-      <anchor xyz="0 0 0" />
-    </joint>    
-    
-    <link name="${prefix}_wheel_link">
-        <inertial>
-          <mass value="${mass}" />
-          <origin xyz=" 0 0 0 " />
-          <cylinder_tensor mass="${mass}" radius="${radius}" height="${height}" />
-        </inertial>
-
-        <collision>
-          <origin xyz="0 0 0" rpy="${-M_PI/2} 0 0" />
-          <geometry>
-            <cylinder radius="${radius}" length="${height}" />
-          </geometry>
-        </collision>
-
-        <!--visual>
-          <origin xyz="0 0 0" rpy="${-M_PI/2} 0 0" />
-          <geometry>
-            <cylinder radius="${radius}" length="${height}" />
-          </geometry>
-          <Yellow />
-        </visual-->
-      </link>
-      
-      <gazebo reference="${prefix}_wheel_link" >
-        <mu1>10.0</mu1>
-        <mu2>10.0</mu2>
-        <kp>1000000.0</kp>
-        <kd>100.0</kd>
-        <minDepth>0.001</minDepth>
-        <maxVel>1.0</maxVel>         
-      </gazebo>
-     
-      <transmission name="${prefix}_wheel_trans">
-        <type>transmission_interface/SimpleTransmission</type>
-        <joint name="${prefix}_wheelt_joint">
-          <hardwareInterface>EffortJointInterface</hardwareInterface>
+<robot xmlns:xacro="http://www.ros.org/wiki/xacro">
+    <xacro:include filename="$(find gvrbot)/models/robots/inertial_tensors.urdf.xacro" />
+    <xacro:macro name="wheel" params="prefix *joint_pose">
+        <link name="${prefix}_wheel_link">
+            <collision>
+                <origin xyz="0 0 0" rpy="${PI/2} 0 0" />
+                <geometry>
+                    <cylinder radius="${wheel_radius}" length="${wheel_width}" />
+                </geometry>
+            </collision>
+            <inertial>
+                <origin xyz="0 0 0" rpy="0 0 0" />
+                <mass value="0.477" />
+                <inertia ixx="0.0013" ixy="0" ixz="0" iyy="0.0024" iyz="0" izz="0.0013" />
+            </inertial>
+        </link>
+        <gazebo reference="${prefix}_wheel_link">
+        </gazebo>
+        <joint name="${prefix}_wheel" type="continuous">
+            <parent link="chassis_link" />
+            <child link="${prefix}_wheel_link" />
+            <xacro:insert_block name="joint_pose" />
+            <axis xyz="0 1 0" />
         </joint>
-        <actuator name="${prefix}_motor_link">
-          <mechanicalReduction>1</mechanicalReduction>
-          <motorTorqueConstant>1</motorTorqueConstant>
-        </actuator>
-      </transmission>
-
-      
+        <!-- In reality, the robot has only two motors, one per side. However, it's more
+         straightforward for Gazebo to simulate as if there's an actuator per wheel. -->
+        <transmission name="${prefix}_wheel_trans">
+            <type>transmission_interface/SimpleTransmission</type>
+            <joint name="${prefix}_wheel">
+                <hardwareInterface>hardware_interface/VelocityJointInterface</hardwareInterface>
+            </joint>
+            <actuator name="${prefix}_actuator">
+                <mechanicalReduction>1</mechanicalReduction>
+            </actuator>
+        </transmission>
     </xacro:macro>
-  </robot>
+</robot>
