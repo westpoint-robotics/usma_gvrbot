@@ -1,6 +1,6 @@
 <?xml version="1.0"?>
 <robot xmlns:xacro="http://www.ros.org/wiki/xacro">
-    <xacro:include filename="$(find gvrbot)/models/robots/inertial_tensors.urdf.xacro" />
+    
     <xacro:macro name="wheel" params="prefix *joint_pose">
         <link name="${prefix}_wheel_link">
             <collision>
@@ -16,6 +16,7 @@
             </inertial>
         </link>
         <gazebo reference="${prefix}_wheel_link">
+      <material>Gazebo/DarkGrey</material>
         </gazebo>
         <joint name="${prefix}_wheel" type="continuous">
             <parent link="chassis_link" />
