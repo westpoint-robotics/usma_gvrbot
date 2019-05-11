@@ -1,5 +1,4 @@
 <launch>
-  <arg name="config" default="base" />
 
   <param name="robot_description"
          command="$(find xacro)/xacro $(find gvrbot)/models/robots/gvrbot.urdf.xacro
