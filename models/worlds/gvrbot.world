@@ -1,0 +1,40 @@
+<?xml version="1.0" ?>
+<sdf version="1.5">
+  <world name="default">
+    <!-- A global light source -->
+    <include>
+      <uri>model://sun</uri>
+    </include>
+    <!-- A ground plane -->
+    <include>
+      <uri>model://ground_plane</uri>
+    </include>
+    <gui>
+      <camera name="user_camera">
+            <pose>7.5 -1.9 5.2 0 0.47 3.07</pose>    
+      </camera>
+    </gui>
+      <model name="Thayer1stFloor">
+        <static>true</static>
+        <link name="link">
+          <collision name="collision">
+            <geometry>
+              <mesh>
+                <uri>/home/user1/catkin_ws/src/usma_gvrbot/models/buildings/Thayer1stFloor3dV8.dae</uri>
+              </mesh>
+            </geometry>
+          </collision>
+          <visual name="visual">
+            <geometry>
+              <mesh>
+                <uri>/home/user1/catkin_ws/src/usma_gvrbot/models/buildings/Thayer1stFloor3dV8.dae</uri>
+              </mesh>
+            </geometry>
+            <material>
+              <emissive>0.350 0.350 0.350 1.0</emissive>
+            </material>
+          </visual>
+        </link>
+      </model>
+  </world>
+</sdf>

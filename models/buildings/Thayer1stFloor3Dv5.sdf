@@ -1,0 +1,27 @@
+<?xml version="1.0" ?>
+<sdf version="1.6">
+  <model name="thayer1stFloor">
+    <static>true</static>
+    <link name="link">
+      <collision name="collision">
+        <geometry>
+          <mesh>
+            <!-- <scale>0.0254 0.0254 0.0254</scale> -->
+            <uri>/home/user1/catkin_ws/src/usma_gvrbot/models/buildings/Thayer1stFloor3dV8.dae</uri>
+          </mesh>
+        </geometry>
+      </collision>
+      <visual name="visual">
+        <geometry>
+          <mesh>
+            <!-- <scale>0.0254 0.0254 0.0254</scale> -->
+            <uri>/home/user1/catkin_ws/src/usma_gvrbot/models/buildings/Thayer1stFloor3dV8.dae</uri>
+          </mesh>
+        </geometry>
+        <material>
+          <emissive>0.350 0.350 0.350 1.0</emissive>
+        </material>
+      </visual>
+    </link>
+  </model>
+</sdf>

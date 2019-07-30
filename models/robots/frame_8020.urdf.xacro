@@ -1,8 +1,14 @@
 <robot xmlns:xacro="http://www.ros.org/wiki/xacro">
-    <xacro:property name="M_PI" value="3.14159"/>
+    
+    <xacro:include filename="$(find gvrbot)/models/robots/inertial_tensors.urdf.xacro" />
+    
+    <xacro:property name="frame_size_x" value="0.680" />
+    <xacro:property name="frame_size_y" value="0.20" />
+    <xacro:property name="frame_size_z" value="0.30" />
+    <xacro:property name="frame_mass" value="2.89" />  
+    <xacro:property name="M_PI" value="3.14159"/> 
 
     <xacro:macro name="frame_8020" params="parent offset_x offset_y offset_z">
-         
         <joint name="frame_8020_joint" type="fixed">
             <origin xyz="${offset_x} ${offset_y} ${offset_z}" rpy="0 0 ${-M_PI/2}" />
             <parent link="${parent}" />
@@ -11,11 +17,9 @@
 
         <link name="frame8020_link">
             <inertial>
-              <origin xyz="0.13868 -0.31707 0.28419" rpy="0 0 0" />
-              <mass value="4.2785" />
-              <inertia
-                ixx="0.11494" ixy="-6.8249E-05" ixz="-0.00030429"
-                iyy="0.12359" iyz="-0.001274" izz="0.071887" />
+              <origin xyz="0.0 -0.0 0.0" rpy="0 0 0" />
+              <mass value="${frame_mass}" />
+              <rectangular_prism_tensor mass="${frame_mass}" len_x="${frame_size_x}" len_y="${frame_size_y}" len_z="${frame_size_z}" />
             </inertial>
             <visual>
               <origin xyz="0 0 0" rpy="0 0 0" />

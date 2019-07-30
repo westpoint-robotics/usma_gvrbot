@@ -13,5 +13,23 @@
                iyy="${ mass / 12 * height * height + mass / 4 * radius * radius }" iyz="0.0"
                izz="${ mass / 2 * radius * radius }" />
   </xacro:macro>
+  
+  <xacro:macro name="box_inertia" params="x y z mass">
+      <inertia ixx="${0.0833333 * mass * (y*y + z*z)}" ixy="0.0" ixz="0.0"
+        iyy="${0.0833333 * mass * (x*x + z*z)}" iyz="0.0"
+        izz="${0.0833333 * mass * (x*x + y*y)}" />
+  </xacro:macro>  
+  
+  
+  <xacro:macro name="cylinder_inertial" params="radius length mass">
+    <inertial>
+      <mass value="${mass}" />
+      <origin xyz="0 0 0" />
+      <inertia ixx="${0.0833333 * mass * (3 * radius * radius + length * length)}" ixy="0.0" ixz="0.0"
+        iyy="${0.0833333 * mass * (3 * radius * radius + length * length)}" iyz="0.0"
+        izz="${0.5 * mass * radius * radius}" />
+    </inertial>
+  </xacro:macro>
+  
 
 </robot>
