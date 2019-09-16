@@ -9,7 +9,8 @@
   <arg name="joy_dev" value="/dev/input/js1" />
 
   <include file="$(find teleop_twist_joy)/launch/teleop.launch">
-      <arg name="config_filepath" value="$(find gvrbot)/config/$(arg joy_config).config.yaml" />
+      <arg name="config_filepath" value="$(find gvrbot)/config/$(arg joy_config).config.yaml" /> 
+      <arg name="joy_dev" value="/dev/input/js1" />
   </include>
 
 </launch>
