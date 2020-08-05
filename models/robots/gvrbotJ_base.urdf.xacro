@@ -13,7 +13,7 @@
     <xacro:property name="base_size_x" value="0.680" />
     <xacro:property name="base_size_y" value="0.42" />
     <xacro:property name="base_size_z" value="0.175" />
-    <xacro:property name="base_mass" value="1.89" />
+    <xacro:property name="base_mass" value="10.89" />
     
     <xacro:property name="wheel_size_y" value="0.0825" />
     <xacro:property name="wheel_mass" value="0.1" />
@@ -83,6 +83,24 @@
         </xacro:wheel>
 
         <gazebo>
+            <gazebo>
+              <plugin name="skid_steer_drive_controller" filename="libgazebo_ros_skid_steer_drive.so">
+                <updateRate>100.0</updateRate>
+                <robotNamespace>/</robotNamespace>
+                <leftFrontJoint>front_left_wheel_joint</leftFrontJoint>
+                <rightFrontJoint>front_right_wheel_joint</rightFrontJoint>
+                <leftRearJoint>back_left_wheel_joint</leftRearJoint>
+                <rightRearJoint>back_right_wheel_joint</rightRearJoint>
+                <wheelSeparation>0.4</wheelSeparation>
+                <wheelDiameter>0.215</wheelDiameter>
+                <robotBaseFrame>base_link</robotBaseFrame>
+                <torque>20</torque>
+                <topicName>cmd_vel</topicName>
+                <broadcastTF>false</broadcastTF>
+              </plugin>
+            </gazebo>        
+        
+        
             <plugin name="gazebo_ros_control" filename="libgazebo_ros_control.so">
                 <robotNamespace>/</robotNamespace>
                 <legacyModeNS>true</legacyModeNS>

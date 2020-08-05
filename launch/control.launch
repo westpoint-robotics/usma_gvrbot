@@ -3,11 +3,10 @@
 
   <node name="controller_spawner" pkg="controller_manager" type="spawner"
         args="gvrbot_joint_publisher gvrbot_velocity_controller" />
-          
-  <node pkg="robot_localization" type="ekf_localization_node" name="ekf_localization"> 
+
+  <node pkg="robot_localization" type="ekf_localization_node" name="ekf_localization">
     <rosparam command="load" file="$(find gvrbot)/config/robot_localization.yaml" />
   </node>
-        
 
   <node pkg="twist_mux" type="twist_mux" name="twist_mux">
     <rosparam command="load" file="$(find gvrbot)/config/twist_mux.yaml" />
@@ -15,4 +14,3 @@
   </node>
 
 </launch>
-
