@@ -2,12 +2,12 @@
 <launch>
  
     <!-- Convert an xacro and put on parameter server  -->
-	<param name= "robot_description02" command="$(find xacro)/xacro.py --inorder '$(find gvrbot)/models/robots/gvrbot.urdf.xacro'"/>
+	<param name= "robot_description02a" command="$(find xacro)/xacro.py --inorder '$(find gvrbot)/models/robots/gvrbot.urdf.xacro'"/>
 
     <!-- Spawn a robot into Gazebo -->
-    <node name="spawn_urdf2" pkg="gazebo_ros" type="spawn_model" args="-z 0.3 -x 0 -param robot_description02 -urdf -model gvr02" />
+    <node name="spawn_urdf2" pkg="gazebo_ros" type="spawn_model" args="-z 2.0 -x 0 -param robot_description02a -urdf -model gvr02a" />
     
-    <include file="$(find gvrbot)/launch/xbox360_teleop.launch"/>
+    <!-- <include file="$(find gvrbot)/launch/xbox360_teleop.launch"/>   -->
     
 
 </launch>

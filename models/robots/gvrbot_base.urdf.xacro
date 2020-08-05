@@ -1,6 +1,6 @@
 <?xml version="1.0"?>
 
-<robot
+<robot name="gvr_base"
     xmlns:xacro="http://www.ros.org/wiki/xacro"
     xmlns:interface="http://www.ros.org/wiki/xacro/#interface">
     
@@ -51,7 +51,7 @@
             <inertial>
                 <mass value="${base_mass}" />
                 <origin xyz="${-base_size_x/2} 0 ${base_size_z/2 + 0.05}" rpy="0 0 0" />
-                <box_inertia x="${base_size_x}" y="${base_size_y}" z="${base_size_z}" mass="${base_mass}" />
+                <xacro:box_inertia x="${base_size_x}" y="${base_size_y}" z="${base_size_z}" mass="${base_mass}" />
             </inertial>
             <!-- compare the two visual pieces until they match up in size then delete the mesh -->
             <visual>

@@ -4,7 +4,7 @@
 
     <!-- Included URDF Files -->
     <xacro:include filename="$(find gvrbot)/models/robots/gvrbot_base.urdf.xacro" />    
-    <gvr_base_macro />   
+    <xacro:gvr_base_macro />   
     <!--
     <xacro:include filename="$(find gvrbot)/models/robots/frame_8020.urdf.xacro" />    
     <frame_8020 parent="base_link" offset_x="0.28" offset_y="0.135" offset_z="-0.115"/>
