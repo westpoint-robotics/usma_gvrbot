@@ -1,6 +1,6 @@
 <!--URDF Launch -->
 <launch>
-    <!-- We resume the logic in empty_world.launch, changing only the name of the world to be launched -->
+    <!-- We resume the logic in empty_world.launch, changing only the name of the world to be launched
     <include file="$(find gazebo_ros)/launch/empty_world.launch">
         <arg name="world_name" value="$(find gvrbot)/models/worlds/gvrbot.world"/> 
         <arg name="paused" value="true"/>
@@ -8,13 +8,17 @@
         <arg name="gui" value="true"/>
         <arg name="debug" value="false"/>
     </include>
+ -->
+
+    <node name="gazebo_ros" pkg="gazebo_ros" type="gzclient"/>
+
 
     <!-- Convert an xacro and put on parameter server     --> 
     <include file="$(find gvrbot)/launch/description.launch"/>
     <include file="$(find gvrbot)/launch/control.launch"/>
 
     <!-- Spawn a robot into Gazebo -->  
-    <node name="spawn_urdf" pkg="gazebo_ros" type="spawn_model" args="-z 0.25 -y -1.25 -param robot_description -urdf -model gvr01" />		
+    <node name="spawn_urdf" pkg="gazebo_ros" type="spawn_model" args="-z 2 -param robot_description -urdf -model gvr01" />		
     <node pkg="interactive_marker_twist_server" type="marker_server" name="twist_marker_server"/>
   <!--
     <param name="thayer_hall" textfile="/home/user1/catkin_ws/src/usma_gvrbot/models/buildings/Thayer1stFloor.sdf" />

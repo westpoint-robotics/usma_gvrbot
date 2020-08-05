@@ -5,7 +5,7 @@
         args="gvrbot_joint_publisher gvrbot_velocity_controller" />
           
   <node pkg="robot_localization" type="ekf_localization_node" name="ekf_localization"> 
-    <rosparam command="load" file="$(find jackal_control)/config/robot_localization.yaml" />
+    <rosparam command="load" file="$(find gvrbot)/config/robot_localization.yaml" />
   </node>
         
 
