@@ -1,6 +1,6 @@
 <robot xmlns:xacro="http://www.ros.org/wiki/xacro">
     
-    <xacro:include filename="$(find gvrbot)/models/robots/inertial_tensors.urdf.xacro" />
+    <xacro:include filename="$(find gvrbot)/models/urdf/inertial_tensors.urdf.xacro" />
     
     <xacro:property name="frame_size_x" value="0.680" />
     <xacro:property name="frame_size_y" value="0.20" />
