@@ -1,0 +1,20 @@
+<?xml version="1.0"?>
+<robot name="gvrbot" xmlns:xacro="http://www.ros.org/wiki/xacro">
+    <xacro:include filename="$(find gvrbot)/models/urdf/inertial_tensors.urdf.xacro" />
+
+  <xacro:property name="PI" value="3.1415926535897931" />
+
+  <link name="base_link"></link>
+  <link name="chassis_link"></link>
+
+  <joint name="base_link_joint" type="fixed">
+    <origin xyz="0 0 0" rpy="0 0 0" />
+    <parent link="base_link"/>
+    <child link="chassis_link" />
+  </joint>
+
+  <!-- Add 8020 Frame. -->
+    <xacro:include filename="$(find gvrbot)/models/urdf/frame_8020.urdf.xacro" />    
+    <frame_8020 parent="base_link" offset_x="-0.315" offset_y="-0.1389" offset_z="-0.01"/>
+  
+</robot>

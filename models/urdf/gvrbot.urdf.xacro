@@ -103,16 +103,13 @@
       <geometry>
         <box size="0.01 0.01 0.01"/>
       </geometry>
-    <script>Gazebo/Orange</script>
-    </visual>
-  
+    </visual>  
   </link>
 
   <joint name="base_link_joint" type="fixed">
     <origin xyz="0 0 0" rpy="0 0 0" />
     <parent link="base_link"/>
     <child link="chassis_link" />
-
   </joint>
 
   <link name="chassis_link">
@@ -138,11 +135,7 @@
     </inertial>
   </link>
 
-  <!-- TODO: Make this internal_imu_link or something, and use a mixed-in xacro
-       to supply the joint between it and imu_link. This is important so that imu_link
-       always points to the "active" IMU. When an upgrade IMU is connected, the
-       internal_imu_link should remain, but imu_link should point to the upgrade one. -->
-  <link name="imu_link">
+ <link name="imu_link">
     <inertial>
       <mass value="0.001"/>
       <origin xyz="0 0 0" rpy="0 0 0"/>
@@ -171,6 +164,7 @@
   </joint>
 
 
+
   <link name="top_mount"></link>
   <joint name="top_mount_joint" type="fixed">
     <parent link="base_link" />
@@ -179,20 +173,18 @@
   </joint>
 
       <xacro:include filename="$(find gvrbot)/models/urdf/hokuyo_ust10.urdf.xacro" />
-      <xacro:hokuyo_ust10_mount prefix="top"
-                          topic="front/scan"/>
-
+      <xacro:hokuyo_ust10_mount prefix="top"  topic="front/scan"/>
       <joint name="top_laser_mount_joint" type="fixed">
-        <origin xyz="0.1 0 0"
-                rpy="0 0 0" />
+        <origin xyz="0.1 0 0" rpy="0 0 0" />
         <parent link="top_mount" />
         <child link="top_laser_mount" />
       </joint>
 
+
   <!-- Bring in simulation data for Gazebo. -->
   <xacro:include filename="$(find gvrbot)/models/urdf/gvrbot.gazebo" />
   
-  <!-- Add 8020 Frame. -->
+  <!-- Add 8020 Frame.  -->
     <xacro:include filename="$(find gvrbot)/models/urdf/frame_8020.urdf.xacro" />    
     <xacro:frame_8020 parent="base_link" offset_x="-0.335" offset_y="-0.117" offset_z="0.132"/>
   
