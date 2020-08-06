@@ -2,24 +2,24 @@
     
     <xacro:include filename="$(find gvrbot)/models/urdf/inertial_tensors.urdf.xacro" />
     
-    <xacro:property name="frame_size_x" value="0.680" />
-    <xacro:property name="frame_size_y" value="0.20" />
-    <xacro:property name="frame_size_z" value="0.30" />
+    <xacro:property name="frame_length" value="0.680" />
+    <xacro:property name="frame_width" value="0.20" />
+    <xacro:property name="frame_height" value="0.30" />
     <xacro:property name="frame_mass" value="2.89" />  
     <xacro:property name="M_PI" value="3.14159"/> 
 
     <xacro:macro name="frame_8020" params="parent offset_x offset_y offset_z">
         <joint name="frame_8020_joint" type="fixed">
-            <origin xyz="${offset_x} ${offset_y} ${offset_z}" rpy="0 0 ${-M_PI/2}" />
+            <origin xyz="${offset_x} ${offset_y} ${offset_z}" rpy="0 0 ${PI/2}" />
             <parent link="${parent}" />
             <child link="frame8020_link" />
         </joint>  
 
         <link name="frame8020_link">
             <inertial>
-              <origin xyz="0.0 -0.0 0.0" rpy="0 0 0" />
+              <origin xyz="0.135 -0.315 0.2" rpy="${PI/2} 0 ${PI/2}" />
               <mass value="${frame_mass}" />
-              <rectangular_prism_tensor mass="${frame_mass}" len_x="${frame_size_x}" len_y="${frame_size_y}" len_z="${frame_size_z}" />
+                <box_inertia x="${frame_length}" y="${frame_width}" z="${frame_height}" mass="${frame_mass}" />
             </inertial>
             <visual>
               <origin xyz="0 0 0" rpy="0 0 0" />

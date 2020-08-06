@@ -1,11 +1,16 @@
 <!--URDF Launch -->
 <launch>
  
-    <!-- Convert an xacro and put on parameter server  -->
-	<param name= "robot_description14" command="$(find xacro)/xacro '$(find gvrbot)/models/urdf/gvrbot2.urdf.xacro'"/>
-
+    <!-- Convert an xacro and put on parameter server  
+	<param name= "robot_description11" command="$(find xacro)/xacro '$(find gvrbot)/models/urdf/frameOnly.xacro'"/>   
+	<param name= "robot_description11" command="$(find xacro)/xacro '$(find gvrbot)/models/urdf/gvrbot2.urdf.xacro'"/>
+	 -->
+  
+	<param name= "robot_description13" command="$(find xacro)/xacro '$(find gvrbot)/models/urdf/gvrbot2.urdf.xacro'"/>
+    
     <!-- Spawn a robot into Gazebo -->
-    <node name="spawn_urdf" pkg="gazebo_ros" type="spawn_model" args="-z 0.5 -y 0.95 -x 0.95 -param robot_description14 -urdf -model gvr14" />		
+    <node name="spawn_urdf" pkg="gazebo_ros" type="spawn_model" args="-z 0.5 -y 0.05 -x 0.05 -param robot_description13 -urdf -model gvr13" />
+    
     
     <!-- <include file="$(find gvrbot)/launch/xbox360_teleop.launch"/>   -->
 
