@@ -5,7 +5,7 @@
 ### 4. [Gazebo simulation](https://github.com/westpoint-robotics/gvrbot/blob/master/simulation.md)
 
 ## Dependency list:
-- `sudo apt-get install -y ros-melodic-velodyne ros-melodic-velodyne-description ros-melodic-velodyne-teleop-twist-joy ros-melodic-jackal-description`
+- `sudo apt-get install -y ros-melodic-velodyne ros-melodic-velodyne-description ros-melodic-velodyne-teleop-twist-joy ros-melodic-jackal-description ros-melodic-realsense2-camera ros-melodic-realsense2-description`
 
 
 

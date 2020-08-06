@@ -15,7 +15,7 @@
       </link>
 
       <gazebo reference="${frame}">
-        <turnGravityOff>true</turnGravityOff>
+        <turnGravityOff>false</turnGravityOff>
         <sensor type="ray" name="${frame}">
           <pose>0 0 0 0 0 0</pose>
           <visualize>false</visualize>
