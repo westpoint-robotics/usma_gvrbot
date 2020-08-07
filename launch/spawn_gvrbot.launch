@@ -9,7 +9,7 @@
 	<param name= "robot_description15" command="$(find xacro)/xacro '$(find gvrbot)/models/urdf/gvrbot.urdf.xacro'"/>
     
     <!-- Spawn a robot into Gazebo -->
-    <node name="spawn_urdf" pkg="gazebo_ros" type="spawn_model" args="-z 0.2 -y 0.05 -x 0.05 -param robot_description15 -urdf -model gvr15" />
+    <node name="spawn_urdf" pkg="gazebo_ros" type="spawn_model" args="-x 4.5 -y -1.5 -z 0.25 -param robot_description15 -urdf -model gvr15" />
     
     
     <!-- <include file="$(find gvrbot)/launch/xbox360_teleop.launch"/>   -->
