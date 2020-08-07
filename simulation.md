@@ -18,7 +18,7 @@
 - Either close and re-open any terminals for the changes to have effect or run this command in each open terminal:  
 `source ~/.bashrc`  
 - Dependencies:  
-`sudo apt-get install -y ros-melodic-twist-mux ros-melodic-robot-localization sudo apt-get install ros-melodic-interactive-marker-twist-server`
+`sudo apt-get install -y ros-melodic-twist-mux ros-melodic-robot-localization ros-melodic-interactive-marker-twist-server ros-melodic-realsense2-description ros-melodic-teleop-twist-joy ros-melodic-jackal-description`
 
 
 interactive_marker_twist_server/marker_server
