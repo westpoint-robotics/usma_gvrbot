@@ -36,12 +36,13 @@
     <include file="$(find gvrbot)/launch/xbox360_teleop.launch"/>
 
    
-    <node pkg="rviz" type="rviz" output="screen" name="rviz" args="-d $(find gvrbot)/launch/gvrbot.rviz"/>
+
 
   <!--
     <param name="thayer_hall" textfile="/home/user1/catkin_ws/src/usma_gvrbot/models/buildings/Thayer1stFloor.sdf" />
     <node name="spawn_thayer_hall" pkg="gazebo_ros" type="spawn_model" args="-sdf -param thayer_hall  -x 0.0 -y -0.0 -z 0.0 -model thayer_hall" respawn="false" output="screen" />
     
+        <node pkg="rviz" type="rviz" output="screen" name="rviz" args="-d $(find gvrbot)/launch/gvrbot.rviz"/>
     
 -->
 

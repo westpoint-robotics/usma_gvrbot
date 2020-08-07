@@ -1,5 +1,10 @@
 # Instructions for using the GVRbot in Gazebosim
 
+## Dependencies:
+- Run the below line of code to install dependencies. If more are needed please annotate on another line.  
+`sudo apt-get install -y ros-melodic-twist-mux ros-melodic-robot-localization ros-melodic-interactive-marker-twist-server ros-melodic-realsense2-description ros-melodic-teleop-twist-joy ros-melodic-jackal-description`
+
+
 ## To run the simulation with the Gazebo server running on a remote machine and the client in a VM:
 1. In both machines modify the file ~/.ignition/fuel/config.yaml  
 `gedit ~/.ignition/fuel/config.yaml`  
@@ -17,13 +22,12 @@
 - You may need to check to ensure these lines are added only once to ~/.bashrc.
 - Either close and re-open any terminals for the changes to have effect or run this command in each open terminal:  
 `source ~/.bashrc`  
-- Dependencies:  
-`sudo apt-get install -y ros-melodic-twist-mux ros-melodic-robot-localization sudo apt-get install ros-melodic-interactive-marker-twist-server`
+
+interactive_marker_twist_server/marker_server
 
 
 
 
-`GAZEBO_MASTER_URI=http://192.168.17.25:11345 gzserver --verbose /opt/ros/melodic/share/jackal_gazebo/worlds/jackal_race.world`
 
 
 
