@@ -2,7 +2,7 @@
 
 ## Dependencies:
 - Run the below line of code to install dependencies. If more are needed please annotate on another line.  
-`sudo apt-get install -y ros-melodic-twist-mux ros-melodic-robot-localization ros-melodic-interactive-marker-twist-server ros-melodic-realsense2-description ros-melodic-teleop-twist-joy ros-melodic-jackal-description`
+`sudo apt-get install -y ros-melodic-twist-mux ros-melodic-robot-localization ros-melodic-interactive-marker-twist-server ros-melodic-realsense2-description ros-melodic-teleop-twist-joy ros-melodic-jackal-description ros-melodic-jackal-gazebo`
 
 
 ## To run the simulation with the Gazebo server running on a remote machine and the client in a VM:
@@ -31,7 +31,7 @@
 
 `GAZEBO_MASTER_URI=http://192.168.17.25:11345 gzserver --verbose /opt/ros/melodic/share/jackal_gazebo/worlds/jackal_race.world`
 
-
+`echo 'export GAZEBO_MASTER_URI=http://192.168.17.24:11345' >> ~/.bashrc`
 
 
 
