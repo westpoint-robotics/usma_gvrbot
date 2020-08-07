@@ -21,11 +21,9 @@
 `sudo apt-get install -y ros-melodic-twist-mux ros-melodic-robot-localization sudo apt-get install ros-melodic-interactive-marker-twist-server`
 
 
-interactive_marker_twist_server/marker_server
 
 
-
-
+`GAZEBO_MASTER_URI=http://192.168.17.25:11345 gzserver --verbose /opt/ros/melodic/share/jackal_gazebo/worlds/jackal_race.world`
 
 
 

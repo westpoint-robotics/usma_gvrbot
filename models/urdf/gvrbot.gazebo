@@ -46,7 +46,7 @@
           <image>
               <width>1920</width>
               <height>1080</height>
-              <format>R8G8B8</format>
+              <format>B8G8R8</format>
           </image>
           <depth_camera></depth_camera>
           <clip>
@@ -59,7 +59,7 @@
         <alwaysOn>true</alwaysOn>
         <updateRate>0</updateRate>
         <cameraName>camera</cameraName>
-        <frameName>camera_rgb_optical_frame</frameName>
+        <frameName>camera_color_optical_frame</frameName>
         <imageTopicName>rgb/image_raw</imageTopicName>
         <depthImageTopicName>depth/image_raw</depthImageTopicName>
         <pointCloudTopicName>depth/points</pointCloudTopicName>

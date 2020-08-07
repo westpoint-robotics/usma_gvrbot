@@ -193,7 +193,7 @@
   
   
   <!-- Add D435 Depth Sensor.  -->
-    <xacro:arg name="use_nominal_extrinsics" default="false"/>
+    <xacro:arg name="use_nominal_extrinsics" default="true"/>
   <xacro:include filename="$(find gvrbot)/models/urdf/_d435.urdf.xacro" />
   
   <xacro:sensor_d435 parent="top_mount" use_nominal_extrinsics="$(arg use_nominal_extrinsics)">
