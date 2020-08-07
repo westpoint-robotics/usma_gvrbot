@@ -172,8 +172,6 @@
     <origin xyz="-0.1 0.1 0" />
   </joint>
 
-
-
   <!-- Add Hokuyo UST10 2d Lidar to front of robot. -->
       <xacro:include filename="$(find gvrbot)/models/urdf/hokuyo_ust10.urdf.xacro" />
       <xacro:hokuyo_ust10_mount prefix="top"  topic="front/scan"/>
@@ -186,7 +184,6 @@
   <!-- Bring in simulation data for Gazebo. -->
   <xacro:include filename="$(find gvrbot)/models/urdf/gvrbot.gazebo" />
   
-
   <!-- Add 8020 Frame.  -->
     <xacro:include filename="$(find gvrbot)/models/urdf/frame_8020.urdf.xacro" />    
     <xacro:frame_8020 parent="base_link" offset_x="-0.335" offset_y="-0.117" offset_z="0.132"/>
