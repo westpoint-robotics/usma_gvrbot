@@ -6,6 +6,7 @@
 
 
 ## To run the simulation with the Gazebo server running on a remote machine and the client in a VM:
+### Setup the environmental variables
 1. In both machines modify the file ~/.ignition/fuel/config.yaml  
 `gedit ~/.ignition/fuel/config.yaml`  
 - If this directory and file do not exist, start Gazebosim and shut it down. This will create the direcotries and files.  
@@ -14,8 +15,33 @@
 - To:  
 `url: https://api.ignitionrobotics.org`  
 
-2. On the server machine start the server with (Replace 192.168.xxx.xxx with the IP address of the server):  
-`GAZEBO_MASTEER_URI=http:192.168.xxx.xxx:11345 gzserver --verbose`  
+2. Set GAZEBO_MASTER_URI and GAZEBO_IP (Substitute in the machine IP Addresses)  
+- Add an alias into .bashrc and run the alias in each terminal  
+`echo "alias gzremote='export GAZEBO_MASTER_URI=http://192.168.17.24:11345;export GAZEBO_IP=192.168.17.25;export ROS_MASTER_URI=http://192.168.17.24:11311;export ROS_IP=192.168.17.25'" >> ~/.bashrc`  
+- Or run them in the terminal  
+`export GAZEBO_MASTER_URI=http://192.168.17.24:11345;export GAZEBO_IP=192.168.17.25`  
+`export ROS_MASTER_URI=http://192.168.17.24:11311;export ROS_IP=192.168.17.25`  
+- To speed up the process of shutting down Gazebosim you may want to add an alias to your .bashrc.   
+`echo 'alias gzstop=""killall gzserver;killall gzclient""' >> ~/.bashrc`  
+- Reload the .bashrc.  
+
+### On the server machine:
+1. Set the environmental variables in the terminal. For example use the alias:  
+`gzremote`
+
+2. Start the server with the launch file:
+`roslaunch gvrbot gazebo_server.launch`
+
+### On the client machine:
+1. Set the environmental variables in the terminal. For example use the alias:  
+`gzremote`
+
+2. Start the server with the launch file:
+`roslaunch gvrbot gazebo_client.launch`
+
+## OLD STUFF MISC BELOW HERE
+1. 
+`GAZEBO_MASTER_URI=http:192.168.xxx.xxx:11345 gzserver --verbose`  
 - or  
 `GAZEBO_MASTER_URI=http://192.168.17.25:11345 gzserver --verbose /opt/ros/melodic/share/jackal_gazebo/worlds/jackal_race.world`  
 3. On the client machine (The virtual machine):  
@@ -26,9 +52,9 @@
 - Either close and re-open any terminals for the changes to have effect or run this command in each open terminal:  
 `source ~/.bashrc`  
 
-4. To speed up the process of shutting down Gazebosim you may want to add an alias to your .bashrc. To do so run the below code and reload the .bashrc.
-`echo 'killall gzserver;killall gzclient' >> ~/.bashrc`  
 
+
+5. Others
 `GAZEBO_MASTER_URI=http://192.168.17.25:11345 gzserver --verbose /opt/ros/melodic/share/jackal_gazebo/worlds/jackal_race.world`
 
 `echo 'export GAZEBO_MASTER_URI=http://192.168.17.24:11345' >> ~/.bashrc`
